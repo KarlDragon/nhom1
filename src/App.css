@@ -55,6 +55,7 @@ a:focus-visible {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 20px;
+  perspective: 800px;
 }
 
 .member-card {
@@ -67,6 +68,26 @@ a:focus-visible {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  overflow: hidden;
+  perspective: 800px;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.member-card-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.member-card > :not(.member-card-glow) {
+  position: relative;
+  z-index: 1;
 }
 
 .member-avatar {
@@ -106,6 +127,18 @@ a:focus-visible {
   padding: 32px 0;
   color: var(--text-secondary);
   text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce), (hover: none) {
+  .member-card {
+    transform: none !important;
+    will-change: auto;
+    transition: none !important;
+  }
+
+  .member-card-glow {
+    display: none;
+  }
 }
 
 @media (min-width: 600px) {
