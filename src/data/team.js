@@ -21,6 +21,6 @@ export const team = [
     name: 'Uyên',
     role: 'Thành viên',
     avatar: `${import.meta.env.BASE_URL}avatars/uyen.svg`,
-    portfolio: '',
+    portfolio: 'https://taehyeonggim710-blip.github.io/Portfolio/',
   },
 ];
